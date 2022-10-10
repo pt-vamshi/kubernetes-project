@@ -1,0 +1,21 @@
+node{
+    stage('checkout'){
+     git 'https://github.com/vgoud59/kubernetes-project.git'
+    }
+    stage('ansile shh'){
+        sshagent(['ubuntu']) {
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.85.69'
+            sh 'scp /var/lib/jenkins/workspace/kubernetes/* ubuntu@172.31.85.69:/home/ubuntu/'
+        }
+    }
+    stage('docker file'){
+        sshagent(['ubuntu']) {
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.85.69 cd /home/ubuntu/'
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.85.69 docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.85.69 docker image tag $JOB_NAME:v1.$BUILD_ID kesarivamshi/$JOB_NAME:v1.$BUILD_ID '
+            
+        }
+        
+        
+    }
+}
