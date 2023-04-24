@@ -11,8 +11,7 @@ RUN yum install -y httpd \
 COPY photogenic /var/www/html/
 WORKDIR /var/www/html/
 RUN ls -lrt
-RUN unzip photogenic.zip
 RUN cp -rvf photogenic/* .
-RUN rm -rf photogenic photogenic.zip
+RUN rm -rf photogenic
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80 22
