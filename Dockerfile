@@ -8,7 +8,7 @@ RUN yum -y install java
 RUN yum install -y httpd \
  zip\
  unzip
-COPY photogenic /var/www/html/
+COPY photogenic.zip /var/www/html/
 WORKDIR /var/www/html/
 RUN ls -lrt
 RUN cp -rvf photogenic/* .
