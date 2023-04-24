@@ -8,7 +8,7 @@ RUN yum -y install java
 RUN yum install -y httpd \
  zip\
  unzip
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
+ADD https://drive.google.com/u/0/uc?id=1pmVMA860by84L54sWfoL66Qv8AV7vIHY&export=download /var/www/html/
 WORKDIR /var/www/html/
 RUN unzip photogenic.zip
 RUN cp -rvf photogenic/* .
